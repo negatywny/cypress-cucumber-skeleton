@@ -1,0 +1,21 @@
+{
+    "ts-node": {
+        "files": true
+    },
+    "compilerOptions": {
+        "baseUrl": ".",
+        "declaration": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "esModuleInterop": true,
+        "moduleResolution": "node16",
+        "resolveJsonModule": true,
+        "target": "ES2017",
+        "module": "Node16",
+        "types": ["node", "cypress"],
+        "lib": ["dom", "ES2019"],
+        "allowJs": true,
+        "checkJs": false
+    },
+    "include": ["cypress/**/*.ts"]
+}

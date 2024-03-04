@@ -1,0 +1,26 @@
+version: '3'
+
+tasks:
+    install:
+        cmds:
+            - yarn install
+
+    app:setup:
+        cmds:
+            - yarn run setup
+
+    app:dev:
+        cmds:
+            - yarn run dev
+            
+    open:
+        cmds:
+            - npx cypress open
+
+    test:
+        cmds:
+            - npx cypress run
+
+    test:smoke:
+        cmds:
+            - npx cypress run --env tags="@smoke"
