@@ -12,6 +12,14 @@ tasks:
     app:dev:
         cmds:
             - yarn run dev
+
+    app:up:
+        cmds:
+            - docker compose up --build -d
+
+    app:down:
+        cmds:
+            - docker compose down
             
     open:
         cmds:
