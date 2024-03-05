@@ -16,13 +16,15 @@ jobs:
                   cache: 'yarn'
 
             - name: Install dependencies
-              run: yarn install
+              run: |
+                  yarn install
+                  yarn global add pm2
 
             - name: Setup Cypress Heroes
               run: yarn run setup
 
             - name: Run Cypress Heroes
-              run: yarn run dev
+              run: pm2 start yarn --interpreter bash --name app -- dev
 
             - name: Run Cypress tests
               run: yarn cypress run --headless --browser chrome
