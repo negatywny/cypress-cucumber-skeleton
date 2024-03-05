@@ -3,40 +3,35 @@ name: Cypress Tests
 on: push
 
 jobs:
-    install:
+    cypress:
         runs-on: ubuntu-22.04
         steps:
-            - name: Checkout
+            - name: Checkout repository
               uses: actions/checkout@v4
 
-            - name: Cypress install
-              uses: cypress-io/github-action@v6
+            - name: Cache yarn packages
+              uses: actions/setup-node@v4
               with:
-                  runTests: false
-                  build: yarn install
+                  node-version: 16
+                  cache: 'yarn'
 
-            - name: Save node_modules
-              uses: actions/upload-artifact@v4
+            - name: Install dependencies
+              run: yarn install
+
+            - name: Setup Cypress Heroes
+              run: yarn run setup
+
+            - name: Run Cypress Heroes
+              run: yarn run dev
+
+            - name: Run Cypress tests
+              run: yarn cypress run --headless --browser chrome
+
+            - name: Generate Cypress report
+              run: yarn cypress run --reporter junit --browser chrome && npx marge --reporter-options "reportDir=results,cypressJson=./cypress.json" --screenshotsDir=cypress/screenshots --screenshots=false
+
+            - name: Upload test results
+              uses: actions/upload-artifact@v2
               with:
-                  name: install
-                  if-no-files-found: error
-                  path: node_modules
-
-    cypress-run:
-        runs-on: ubuntu-22.04
-        needs: install
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-
-            - name: Download the node_modules folder
-              uses: actions/download-artifact@v4
-              with:
-                  name: install
-                  path: node_modules
-
-            - name: Cypress run
-              uses: cypress-io/github-action@v6
-              with:
-                  start: yarn start
-                  browser: chrome
+                  name: cypress-test-results
+                  path: cypress/results
