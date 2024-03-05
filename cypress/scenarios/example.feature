@@ -1,6 +1,5 @@
 Feature: Example Feature
 
-  
   Scenario Outline: Scenario Outline Example
     Given Example Given
     When Example When

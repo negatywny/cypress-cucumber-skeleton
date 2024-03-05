@@ -5,22 +5,30 @@ tasks:
         cmds:
             - yarn install
 
-    app:setup:
+    setup:
         cmds:
             - yarn run setup
 
-    app:dev:
+    dev:
         cmds:
             - yarn run dev
-            
+
+    up:
+        cmds:
+            - docker compose up --build -d
+
+    down:
+        cmds:
+            - docker compose down
+
     open:
         cmds:
-            - npx cypress open
+            - yarn run cypress open
 
     test:
         cmds:
-            - npx cypress run
+            - yarn run cypress run
 
     test:smoke:
         cmds:
-            - npx cypress run --env tags="@smoke"
+            - yarn run cypress run --env tags="@smoke"
