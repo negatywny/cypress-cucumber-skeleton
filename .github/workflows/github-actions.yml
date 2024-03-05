@@ -23,8 +23,8 @@ jobs:
             - name: Setup Cypress Heroes
               run: yarn run setup
 
-            - name: Run Cypress Heroes
-              run: pm2 start yarn --interpreter bash --name app -- dev
+            - name: Run Cypress Heroes in background
+              run: pm2 start yarn --name "app" -- run dev
 
             - name: Run Cypress tests
               run: yarn cypress run --headless --browser chrome
