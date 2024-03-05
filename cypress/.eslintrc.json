@@ -1,8 +1,5 @@
 {
-    "plugins": [
-        "cypress",
-        "@typescript-eslint"
-    ],
+    "plugins": ["cypress", "@typescript-eslint"],
     "rules": {
         "cypress/no-assigning-return-values": "error",
         "cypress/no-unnecessary-waiting": "error",

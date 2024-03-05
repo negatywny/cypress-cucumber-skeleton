@@ -2,9 +2,9 @@ version: '3'
 services:
     cypress-heroes:
         container_name: cypress-heroes
-        network_mode: host
         ports:
-          - 3000:3000
+            - 3000:3000
+            - 3001:3001
         command: dev
         build:
             context: .

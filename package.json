@@ -1,35 +1,35 @@
 {
-  "name": "cypress-cucumber-skeleton",
-  "version": "1.0.0",
-  "main": "index.js",
-  "private": true,
-  "repository": "https://github.com/negatywny/cypress-cucumber-skeleton.git",
-  "author": "negatywny <oax2201@gmail.com>",
-  "license": "MIT",
-  "workspaces": [
-    "app/client",
-    "app/server",
-    "app"
-  ],
-  "scripts": {
-    "build": "npm --prefix ./app run build",
-    "setup": "npm run resetdb",
-    "resetdb": "npm --prefix ./app run resetdb",
-    "dev": "npm --prefix ./app run dev",
-    "start:ci": "npm --prefix ./app run start:ci"
-  },
-  "devDependencies": {
-      "prettier": "3.2.5",
-      "@badeball/cypress-cucumber-preprocessor": "^20.0.2",
-      "@bahmutov/cypress-esbuild-preprocessor": "^2.1.5",
-      "@typescript-eslint/eslint-plugin": "^7.1.1",
-      "@typescript-eslint/parser": "^7.1.1",
-      "cypress": "^13.6.6",
-      "eslint": "^8.32.0",
-      "eslint-config-prettier": "^9.1.0",
-      "eslint-plugin-cypress": "^2.12.1",
-      "eslint-plugin-import": "^2.27.4",
-      "eslint-plugin-prettier": "^5.1.3",
-      "typescript": "^5.3.3"
-  }
+    "name": "cypress-cucumber-skeleton",
+    "version": "1.0.0",
+    "main": "index.js",
+    "private": true,
+    "repository": "https://github.com/negatywny/cypress-cucumber-skeleton.git",
+    "author": "negatywny <oax2201@gmail.com>",
+    "license": "MIT",
+    "workspaces": [
+        "app",
+        "app/server",
+        "app/client"
+    ],
+    "scripts": {
+        "build": "npm --prefix ./app run build",
+        "setup": "npm run resetdb",
+        "resetdb": "npm --prefix ./app run resetdb",
+        "dev": "npm --prefix ./app run dev",
+        "start:ci": "npm --prefix ./app run start:ci"
+    },
+    "devDependencies": {
+        "prettier": "3.2.5",
+        "@badeball/cypress-cucumber-preprocessor": "^20.0.2",
+        "@bahmutov/cypress-esbuild-preprocessor": "^2.1.5",
+        "@typescript-eslint/eslint-plugin": "^7.1.1",
+        "@typescript-eslint/parser": "^7.1.1",
+        "cypress": "^13.6.6",
+        "eslint": "^8.32.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-cypress": "^2.12.1",
+        "eslint-plugin-import": "^2.27.4",
+        "eslint-plugin-prettier": "^5.1.3",
+        "typescript": "^5.3.3"
+    }
 }
