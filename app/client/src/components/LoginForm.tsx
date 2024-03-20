@@ -34,11 +34,11 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
 
   return (
     <div className="flex flex-col gap-4 w-[380px]">
-      <h5 className="text-xl">Login</h5>
+      <h5 className="text-xl" data-cy="login_modal_header">Login</h5>
       <form noValidate className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <InputField
           label="Email"
-          data-cy="email"
+          data-cy="email_input"
           expand="full"
           type="email"
           errorMessage={formState.errors.email?.message as string}
@@ -53,7 +53,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
 
         <InputField
           label="Password"
-          data-cy="password"
+          data-cy="password_input"
           expand="full"
           type="password"
           errorMessage={formState.errors.password?.message as string}
@@ -62,9 +62,14 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
           })}
         />
 
-        {error && <div className="text-red-500">{error}</div>}
+        {error && <div className="text-red-500" data-cy="modal_error">{error}</div>}
 
-        <Button expand="full">Sign in</Button>
+        <Button 
+          expand="full" 
+          data-cy="submit_button"
+        >
+          Sign in
+        </Button>
       </form>
     </div>
   );
