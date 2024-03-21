@@ -9,7 +9,7 @@ on:
             - master
 
 jobs:
-    cypress:
+    e2e:
         runs-on: ubuntu-22.04
         steps:
             - name: Checkout repository
