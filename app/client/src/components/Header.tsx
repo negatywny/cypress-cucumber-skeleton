@@ -23,18 +23,24 @@ const Header: React.FC<HeaderProps> = () => {
             {user && user.isAdmin && (
               <li>
                 <Link to="/heroes/new">
-                  <Button color="primary">Create New Hero</Button>
+                  <Button 
+                    color="primary" 
+                    data-cy="create_new_hero_button"
+                  >
+                    Create New Hero
+                  </Button>
                 </Link>
               </li>
             )}
             <li>
               {user ? (
-                <Button color="outline" onClick={logout}>
+                <Button color="outline"  data-cy="logout_button" onClick={logout}>
                   Logout
                 </Button>
               ) : (
                 <Button
                   color="outline"
+                  data-cy="login_button"
                   onClick={() => {
                     setModal(<LoginForm onLogin={() => setModal(undefined)} />);
                   }}
