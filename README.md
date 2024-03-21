@@ -21,3 +21,4 @@ Logging in as a normal user will allow you to like and hire the hero. Notice tha
 
 You gain access to add, edit, and delete heroes as an admin user.
 <!--  -->
+<!--  -->
