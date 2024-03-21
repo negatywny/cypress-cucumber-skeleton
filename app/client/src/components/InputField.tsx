@@ -4,12 +4,13 @@ interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
   expand?: 'inline-block' | 'full';
   errorMessage?: string;
+  dataCy?: string;
 }
 
 export const InputField: React.FC<InputFieldProps> = React.forwardRef<
   HTMLInputElement,
   InputFieldProps
->(({ errorMessage, expand = 'inline-block', label, ...props }, ref) => {
+>(({ errorMessage, expand = 'inline-block', label, dataCy, ...props }, ref) => {
   return (
     <div>
       <label className="block mb-2 text-sm font-medium text-gray-500">
@@ -22,7 +23,7 @@ export const InputField: React.FC<InputFieldProps> = React.forwardRef<
           }`}
         />
       </label>
-      {errorMessage && <div className="text-red-500">{errorMessage}</div>}
+      {errorMessage && <div className="text-red-500" data-cy={dataCy}>{errorMessage}</div>}
     </div>
   );
 });

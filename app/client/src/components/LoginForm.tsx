@@ -41,6 +41,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
           data-cy="email_input"
           expand="full"
           type="email"
+          dataCy='email_error'
           errorMessage={formState.errors.email?.message as string}
           {...register('email', {
             required: 'Email is required',
@@ -56,6 +57,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
           data-cy="password_input"
           expand="full"
           type="password"
+          dataCy='password_error'
           errorMessage={formState.errors.password?.message as string}
           {...register('password', {
             required: 'Password is required',

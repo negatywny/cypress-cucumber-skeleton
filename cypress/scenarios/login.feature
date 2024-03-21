@@ -25,7 +25,8 @@ Feature: Login Feature
     And I fill email input
     And I fill password input
     And I click on sign in button
-    Then I should see Invalid email or password error
+    Then I should not sign in
+    Then I should see Invalid email or password modal error
 
   Scenario: Incorrect Password
     Given Email is: 'test123@test.com'
@@ -34,15 +35,11 @@ Feature: Login Feature
     And I fill email input
     And I fill password input
     And I click on sign in button
-    Then I should see Invalid email or password error
+    Then I should not sign in
+    Then I should see Invalid email or password modal error
 
   Scenario: Invalid Email and Password
-    Given Email is: ''
-    Given Password is: ''
     When I open a login modal
-    And I fill email input
-    And I fill password input
     And I click on sign in button
     Then I should see Email is not valid input error
     Then I should see Password is required input error
-

@@ -8,7 +8,8 @@
         "cypress/no-async-tests": "error",
         "@typescript-eslint/no-namespace": "off",
         "@typescript-eslint/ban-ts-comment": "off",
-        "cypress/no-pause": "error"
+        "cypress/no-pause": "error",
+        "cypress/unsafe-to-chain-command": "off"
     },
     "env": {
         "cypress/globals": true
