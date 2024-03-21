@@ -33,8 +33,9 @@
         "typescript": "^5.3.3"
     },
     "cypress-cucumber-preprocessor": {
-      "json": {
-        "enabled": false
-      },
-      "stepDefinitions": "cypress/support/step_definitions/*.ts"
+        "json": {
+            "enabled": false
+        },
+        "stepDefinitions": "cypress/support/step_definitions/**/*.ts"
+    }
 }
