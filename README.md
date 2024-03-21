@@ -20,3 +20,4 @@ Attempting to click the like or hire icons will result in being prompted to log 
 Logging in as a normal user will allow you to like and hire the hero. Notice that when doing so, the number of fans and saves increases (respectively).
 
 You gain access to add, edit, and delete heroes as an admin user.
+<!--  -->
