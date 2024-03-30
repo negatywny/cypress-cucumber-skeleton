@@ -19,7 +19,6 @@
         "start:ci": "npm --prefix ./app run start:ci",
         "e2e:chrome": "npx cypress run --browser chrome",
         "e2e:firefox": "npx cypress run --browser firefox"
-
     },
     "devDependencies": {
         "prettier": "3.2.5",
