@@ -36,13 +36,17 @@ jobs:
               with:
                   name: build-folders
 
+            - name: Add PM2
+              run: yarn global add pm2
+
             - name: Run E2E Tests
               uses: cypress-io/github-action@v6
               with:
-                  start: yarn run start:ci
-                  wait-on: 'http://localhost:3000, http://localhost:3001/heroes'
-                  command: yarn run e2e:chrome
-
+                  start: pm2 start yarn --name "app" -- run start:ci
+                  wait-on: 'http://localhost:3001/heroes, http://localhost:3000'
+                  wait-on-timeout: 120
+                  browser: chrome
+                  
     e2e-firefox:
         runs-on: ubuntu-latest
         needs: install
@@ -55,9 +59,13 @@ jobs:
               with:
                   name: build-folders
 
+            - name: Add PM2
+              run: yarn global add pm2
+
             - name: Run E2E Tests
               uses: cypress-io/github-action@v6
               with:
-                  start: yarn run start:ci
-                  wait-on: 'http://localhost:3000, http://localhost:3001/heroes'
-                  command: yarn run e2e:firefox
+                  start: pm2 start yarn --name "app" -- run start:ci
+                  wait-on: 'http://localhost:3001/heroes, http://localhost:3000'
+                  wait-on-timeout: 120
+                  browser: firefox
