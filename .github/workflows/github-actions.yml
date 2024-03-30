@@ -21,7 +21,6 @@ jobs:
                 runTests: false
             - run: yarn cypress info
             - run: yarn install --frozen-lockfile
-            - run: yarn global add pm2
             - run: yarn run setup
 
     e2e-chrome:
@@ -30,6 +29,9 @@ jobs:
       steps:
         - name: Checkout
           uses: actions/checkout@v4
+
+        - name: Add PM2
+          run: yarn global add pm2
 
         - name: E2E Cypress tests using Chrome
           uses: cypress-io/github-action@v6
@@ -47,6 +49,9 @@ jobs:
       steps:
         - name: Checkout
           uses: actions/checkout@v4
+
+        - name: Add PM2
+          run: yarn global add pm2
 
         - name: E2E Cypress tests using Chrome
           uses: cypress-io/github-action@v6
