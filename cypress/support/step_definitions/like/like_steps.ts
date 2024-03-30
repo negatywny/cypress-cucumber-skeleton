@@ -4,12 +4,18 @@ Given('Im on the hero page', function () {
     cy.visit('/')
 })
 
-When('I click on first hero like button', function () {
-    cy.getByCy('hero_card')
-        .first()
-        .within(() => {
-            cy.getByCy('like').click()
-        })
+When('I see a first hero', function () {
+    cy.getByCy('hero_card').first().as('hero')
+})
+
+When('I see a hero with a name {string}', function (name: string) {
+    cy.contains(name).parents('[data-cy="hero_card"]').as('hero')
+})
+
+When('I click on a hero like button', function () {
+    cy.get('@hero').within(() => {
+        cy.getByCy('like').click()
+    })
 })
 
 Then(
@@ -25,4 +31,26 @@ Then(
 Then('I am able to close login information modal', function () {
     cy.getByCy('alert_modal_submit_button').click()
     cy.getByCy('alert-_modal').should('not.exist')
+})
+
+When('I memorize a hero fans counter', function () {
+    cy.get('@hero').within(() => {
+        cy.getByCy('fans').invoke('text').as('fans_counter')
+    })
+})
+
+Then('Hero fans counter should not increase', function () {
+    cy.get('@hero').within(() => {
+        cy.get<string>('@fans_counter').then((counter) => {
+            cy.getByCy('fans').should('contain.text', counter)
+        })
+    })
+})
+
+Then('Hero fans counter should increase', function () {
+    cy.get('@hero').within(() => {
+        cy.get('@fans_counter').then((counter) => {
+            cy.getByCy('fans').should('contain.text', +counter)
+        })
+    })
 })
