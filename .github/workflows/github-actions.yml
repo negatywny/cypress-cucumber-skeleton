@@ -45,8 +45,6 @@ jobs:
             - name: Run E2E Tests
               uses: cypress-io/github-action@v6
               with:
-                  wait-on: 'http://localhost:3001/heroes, http://localhost:3000'
-                  wait-on-timeout: 120
                   browser: chrome
 
     e2e-firefox:
@@ -70,6 +68,4 @@ jobs:
             - name: Run E2E Tests
               uses: cypress-io/github-action@v6
               with:
-                  wait-on: 'http://localhost:3001/heroes, http://localhost:3000'
-                  wait-on-timeout: 120
                   browser: firefox
