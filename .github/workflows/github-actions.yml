@@ -16,7 +16,7 @@ jobs:
                   cache: 'yarn'
 
             - name: Install dependencies
-              run: 
+              run: |
                   yarn install
                   yarn global add pm2
 
