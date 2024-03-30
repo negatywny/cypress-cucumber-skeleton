@@ -27,7 +27,7 @@ const HeroCard: React.FC<HeroCardProps> = ({
     <li className="mt-8 list-none" data-cy="hero_card">
       <div className="w-[280px] rounded-lg border shadow-md bg-gray-50">
         <div className="flex flex-col items-center">
-          <Avatar className="-mt-8" hero={hero} />
+          <Avatar className="-mt-8" dataCy="avatar" hero={hero} />
           <div className="flex justify-center">
             <div className="p-2 text-center">
               <span
