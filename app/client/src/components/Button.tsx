@@ -4,6 +4,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   color?: 'primary' | 'secondary' | 'danger' | 'outline';
   expand?: 'inline-block' | 'full';
   focus?: boolean;
+  dataCy?: string;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -12,6 +13,7 @@ export const Button: React.FC<ButtonProps> = ({
   focus,
   children,
   className,
+  dataCy,
   ...props
 }) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -47,7 +49,7 @@ export const Button: React.FC<ButtonProps> = ({
     return className + ' ' + styles;
   };
   return (
-    <button ref={buttonRef} className={getClassNames()} {...props}>
+    <button ref={buttonRef} className={getClassNames()} data-cy={dataCy} {...props}>
       {children}
     </button>
   );

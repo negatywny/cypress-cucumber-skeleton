@@ -30,12 +30,16 @@ Then(
 
 Then('I am able to close login information modal', function () {
     cy.getByCy('alert_modal_submit_button').click()
-    cy.getByCy('alert-_modal').should('not.exist')
+    cy.getByCy('alert_modal').should('not.exist')
 })
 
 When('I memorize a hero fans counter', function () {
     cy.get('@hero').within(() => {
-        cy.getByCy('fans').invoke('text').as('fans_counter')
+        cy.getByCy('fans')
+            .invoke('text')
+            .then((text) => {
+                cy.wrap<string>(text).as('fans_counter')
+            })
     })
 })
 
@@ -50,7 +54,7 @@ Then('Hero fans counter should not increase', function () {
 Then('Hero fans counter should increase', function () {
     cy.get('@hero').within(() => {
         cy.get('@fans_counter').then((counter) => {
-            cy.getByCy('fans').should('contain.text', +counter)
+            cy.getByCy('fans').should('contain.text', Number(counter)+1)
         })
     })
 })
