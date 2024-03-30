@@ -34,7 +34,7 @@ When('I click on sign in button', function () {
     cy.getByCy('submit_button').click()
 })
 
-Then('I should be logged as user', () => {
+Then('I should be logged as normal user', function () {
     cy.get<string>('@email').then((email) => {
         cy.wait('@auth')
             .its('response.body.user')
@@ -47,7 +47,7 @@ Then('I should be logged as user', () => {
     cy.getByCy('create_new_hero_button').should('not.exist')
 })
 
-Then('I should be logged as admin', () => {
+Then('I should be logged as admin', function () {
     cy.get<string>('@email').then((email) => {
         cy.wait('@auth')
             .its('response.body.user')
@@ -60,21 +60,40 @@ Then('I should be logged as admin', () => {
     cy.getByCy('create_new_hero_button').should('be.enabled')
 })
 
-Then('I should see Invalid email or password modal error', () => {
+Then('I should see Invalid email or password modal error', function () {
     cy.getByCy('modal_error').should(
         'contain.text',
         'Invalid email or password',
     )
 })
 
-Then('I should see Password is required input error', () => {
-    cy.getByCy('password_error').should('contain.text', 'Password is required')
+Then('I should see Password is required input error', function () {
+    cy.getByCy('password_error')
+        .should('be.visible')
+        .and('contain.text', 'Password is required')
+})
+
+Then('I should see Email is required input error', function () {
+    cy.getByCy('email_error')
+        .should('be.visible')
+        .and('contain.text', 'Email is required')
+})
+
+Then('I should not sign in', function () {
+    cy.wait('@auth').its('response.statusCode').should('eq', 401)
+    cy.getByCy('login_button').should('be.visible')
+})
+
+When('I log in as normal user', function () {
+    cy.login('test@test.com', 'test123')
+})
+
+When('I log in as admin', function () {
+    cy.login('admin@test.com', 'test123')
 })
 
 Then('I should see Email is not valid input error', () => {
-    cy.getByCy('email_error').should('contain.text', 'Email is required')
-})
-
-Then('I should not sign in', () => {
-    cy.wait('@auth').its('response.statusCode').should('eq', 401)
+    cy.getByCy('email_error')
+        .should('be.visible')
+        .and('contain.text', 'Email is not valid')
 })

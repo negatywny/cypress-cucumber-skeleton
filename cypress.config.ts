@@ -28,6 +28,7 @@ export default defineConfig({
         viewportWidth: 1280,
         supportFile: 'cypress/support/e2e.ts',
         defaultCommandTimeout: 1500,
+        scrollBehavior: "center",
         chromeWebSecurity: false,
         watchForFileChanges: true,
         testIsolation: true,

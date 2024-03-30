@@ -29,3 +29,23 @@
 Cypress.Commands.add('getByCy', (selector, ...args) => {
     return cy.get(`[data-cy=${selector}]`, ...args)
 })
+
+Cypress.Commands.add('login', (email, password) => {
+    return cy
+        .wrap(email)
+        .as('email')
+        .then(() => {
+            cy.intercept('/auth').as('auth')
+            cy.visit('/')
+                .getByCy('login_button')
+                .click()
+                .then(() => {
+                    cy.getByCy('email_input')
+                        .type(email)
+                        .getByCy('password_input')
+                        .type(password)
+                        .getByCy('submit_button')
+                        .click()
+                })
+        })
+})

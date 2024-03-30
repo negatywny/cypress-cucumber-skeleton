@@ -24,7 +24,7 @@ const HeroCard: React.FC<HeroCardProps> = ({
   onDeleteHero = () => {},
 }) => {
   return (
-    <li className="mt-8 list-none" data-cy="hero-card">
+    <li className="mt-8 list-none" data-cy="hero_card">
       <div className="w-[280px] rounded-lg border shadow-md bg-gray-50">
         <div className="flex flex-col items-center">
           <Avatar className="-mt-8" hero={hero} />

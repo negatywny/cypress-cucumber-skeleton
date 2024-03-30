@@ -59,7 +59,7 @@ const HeroForm: React.FC<HeroFormProps> = ({ hero, powers, onSave }) => {
         label="Name"
         defaultValue={hero?.name}
         type="text"
-        data-cy="nameInput"
+        data-cy="name_input"
         errorMessage={formState.errors.name?.message as string}
         {...register('name', {
           required: 'Name is required',
@@ -70,7 +70,7 @@ const HeroForm: React.FC<HeroFormProps> = ({ hero, powers, onSave }) => {
         label="Price"
         defaultValue={hero?.price}
         type="number"
-        data-cy="priceInput"
+        data-cy="price_input"
         errorMessage={formState.errors.price?.message as string}
         {...register('price', {
           required: 'Price is required',
@@ -81,7 +81,7 @@ const HeroForm: React.FC<HeroFormProps> = ({ hero, powers, onSave }) => {
         label="Fans"
         defaultValue={hero?.fans}
         type="number"
-        data-cy="fansInput"
+        data-cy="fans_input"
         errorMessage={formState.errors.fans?.message as string}
         {...register('fans', {
           required: 'Fans is required',
@@ -92,7 +92,7 @@ const HeroForm: React.FC<HeroFormProps> = ({ hero, powers, onSave }) => {
         label="Saves"
         defaultValue={hero?.saves}
         type="number"
-        data-cy="savesInput"
+        data-cy="saves_input"
         errorMessage={formState.errors.saves?.message as string}
         {...register('saves', {
           required: 'Saves is required',
@@ -105,7 +105,7 @@ const HeroForm: React.FC<HeroFormProps> = ({ hero, powers, onSave }) => {
         label="Powers"
         multiple
         size={6}
-        data-cy="powersSelect"
+        data-cy="powers_select"
         errorMessage={formState.errors.powers?.message as string}
         {...register('powers', {
           required: 'Powers is required',
@@ -127,7 +127,7 @@ const HeroForm: React.FC<HeroFormProps> = ({ hero, powers, onSave }) => {
             accept="image/*"
             type="file"
             id="avatar"
-            data-cy="avatarFile"
+            data-cy="avatar_file"
             className="cursor-pointer absolute block opacity-0 top-0 right-0 left-0 z-50 w-full h-full"
             onChange={handleFileChange}
           />
