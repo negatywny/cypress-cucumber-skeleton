@@ -39,14 +39,16 @@ jobs:
             - name: Add PM2
               run: yarn global add pm2
 
+            - name: Run Cypress Heroes in background
+              run: pm2 start yarn --name "app" -- run start:ci
+
             - name: Run E2E Tests
               uses: cypress-io/github-action@v6
               with:
-                  start: pm2 start yarn --name "app" -- run start:ci
                   wait-on: 'http://localhost:3001/heroes, http://localhost:3000'
                   wait-on-timeout: 120
                   browser: chrome
-                  
+
     e2e-firefox:
         runs-on: ubuntu-latest
         needs: install
@@ -62,10 +64,12 @@ jobs:
             - name: Add PM2
               run: yarn global add pm2
 
+            - name: Run Cypress Heroes in background
+              run: pm2 start yarn --name "app" -- run start:ci
+
             - name: Run E2E Tests
               uses: cypress-io/github-action@v6
               with:
-                  start: pm2 start yarn --name "app" -- run start:ci
                   wait-on: 'http://localhost:3001/heroes, http://localhost:3000'
                   wait-on-timeout: 120
                   browser: firefox
