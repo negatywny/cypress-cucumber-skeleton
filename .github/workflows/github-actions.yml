@@ -4,7 +4,7 @@ on: pull_request
 
 jobs:
     install:
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-22.04
         steps:
             - name: Checkout
               uses: actions/checkout@v4
@@ -13,40 +13,37 @@ jobs:
               uses: cypress-io/github-action@v6
               with:
                   runTests: false
-                  build: yarn install
+                  build: yarn build
 
-    e2e-chrome:
-        runs-on: ubuntu-latest
+            - name: Save build folder
+              uses: actions/upload-artifact@v4
+              with:
+                  name: build
+                  if-no-files-found: error
+                  path: |
+                      app/client/dist
+                      app/server/dist
+
+    cypress-run:
+        runs-on: ubuntu-22.04
         needs: install
         steps:
             - name: Checkout
               uses: actions/checkout@v4
 
+            - name: Download the build folder
+              uses: actions/download-artifact@v4
+              with:
+                  name: build
+                  path: |
+                      app/client/dist
+                      app/server/dist
+
             - name: Add PM2
               run: yarn global add pm2
 
-            - name: Run Cypress Heroes in background
-              run: pm2 start yarn --name "app" -- run start:ci
-
-            - name: Run E2E Tests
+            - name: Cypress run
               uses: cypress-io/github-action@v6
               with:
+                  start: pm2 start yarn --name "app" -- run start:ci
                   browser: chrome
-
-    e2e-firefox:
-        runs-on: ubuntu-latest
-        needs: install
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-
-            - name: Add PM2
-              run: yarn global add pm2
-
-            - name: Run Cypress Heroes in background
-              run: pm2 start yarn --name "app" -- run start:ci
-
-            - name: Run E2E Tests
-              uses: cypress-io/github-action@v6
-              with:
-                  browser: firefox

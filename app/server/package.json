@@ -10,12 +10,12 @@
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
-    "start:ci": "npm run prisma:resetdb && nest start",
+    "start:ci": "yarn prisma:resetdb && nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/src/main.js",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "prisma:resetdb": "npx prisma migrate reset --skip-seed -f && npx prisma db push && npx prisma db seed"
+    "prisma:resetdb": "yarn prisma migrate reset --skip-seed -f && yarn prisma db push && yarn prisma db seed"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
