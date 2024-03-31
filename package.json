@@ -16,9 +16,11 @@
         "setup": "yarn resetdb",
         "resetdb": "yarn --cwd ./app resetdb",
         "dev": "yarn --cwd ./app dev",
+        "lint": "yarn --cwd ./app lint && eslint cypress --ext ts",
         "start:ci": "yarn --cwd ./app start:ci",
         "e2e:chrome": "yarn run cypress run --browser chrome",
         "e2e:firefox": "yarn run cypress run --browser firefox"
+        
     },
     "devDependencies": {
         "prettier": "3.2.5",
