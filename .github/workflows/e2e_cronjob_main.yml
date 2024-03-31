@@ -47,7 +47,7 @@ jobs:
             - name: Add PM2
               run: yarn global add pm2
 
-            - name: Cypress run
+            - name: E2E
               uses: cypress-io/github-action@v6
               with:
                   browser: chrome
