@@ -9,6 +9,9 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
 
+            - name: Add PM2
+              run: yarn global add pm2
+
             - name: Cypress install
               uses: cypress-io/github-action@v6
               with:
@@ -27,6 +30,10 @@ jobs:
                       app/client/dist
                       app/server/dist
 
+            - name: Start Cypress Heroes in the background
+              run: pm2 start yarn --name "app" -- run start:ci
+
+
     e2e-chrome:
         runs-on: ubuntu-22.04
         needs: install
@@ -42,13 +49,11 @@ jobs:
                       app/client/dist
                       app/server/dist
 
-            - name: Add PM2
-              run: yarn global add pm2
+
 
             - name: Cypress run
               uses: cypress-io/github-action@v6
               with:
-                  start: pm2 start yarn --name "app" -- run start:ci
                   browser: chrome
                   wait-on: 'http://localhost:3000'
                   wait-on-timeout: 120
@@ -68,13 +73,9 @@ jobs:
                       app/client/dist
                       app/server/dist
 
-            - name: Add PM2
-              run: yarn global add pm2
-
             - name: Cypress run
               uses: cypress-io/github-action@v6
               with:
-                  start: pm2 start yarn --name "app" -- run start:ci
                   browser: edge
                   wait-on: 'http://localhost:3000'
                   wait-on-timeout: 120
