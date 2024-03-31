@@ -85,7 +85,7 @@ Then('I should not sign in', function () {
 })
 
 When('I log in as normal user', function () {
-    cy.login('test@test.com', 'test123')
+    cy.login('test@test.com', 'test1231')
 })
 
 When('I log in as admin', function () {
