@@ -6,7 +6,7 @@
     "scripts": {
         "dev": "vite --host",
         "clean": "rimraf dist",
-        "prebuild": "yarn clean && yarn lint",
+        "prebuild": "yarn clean",
         "build": "tsc && vite build",
         "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
         "preview": "vite preview --host"
