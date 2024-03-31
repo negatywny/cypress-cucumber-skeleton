@@ -64,7 +64,7 @@ jobs:
                   wait-on-timeout: 100
 
             - name: Upload screenshots
-              uses: actions/download-artifact@v4
+              uses: actions/upload-artifact@v4
               if: failure()
               with:
                   name: cypress-screenshots-chrome
