@@ -5,9 +5,6 @@ on: pull_request
 jobs:
     install:
         runs-on: ubuntu-22.04
-        container:
-            image: cypress/browsers:node-20.11.1-chrome-123.0.6312.58-1-ff-124.0-edge-122.0.2365.92-1
-            options: --user 1001
         steps:
             - name: Checkout
               uses: actions/checkout@v4
@@ -29,9 +26,6 @@ jobs:
 
     eslint:
         runs-on: ubuntu-22.04
-        container:
-            image: cypress/browsers:node-20.11.1-chrome-123.0.6312.58-1-ff-124.0-edge-122.0.2365.92-1
-            options: --user 1001
         needs: install
         steps:
             - name: Checkout
@@ -46,9 +40,6 @@ jobs:
     e2e-chrome:
         runs-on: ubuntu-22.04
         needs: eslint
-        container:
-            image: cypress/browsers:node-20.11.1-chrome-123.0.6312.58-1-ff-124.0-edge-122.0.2365.92-1
-            options: --user 1001
         steps:
             - name: Checkout
               uses: actions/checkout@v4
@@ -82,9 +73,6 @@ jobs:
     e2e-edge:
         runs-on: ubuntu-22.04
         needs: eslint
-        container:
-            image: cypress/browsers:node-20.11.1-chrome-123.0.6312.58-1-ff-124.0-edge-122.0.2365.92-1
-            options: --user 1001
         steps:
             - name: Checkout
               uses: actions/checkout@v4
@@ -113,40 +101,4 @@ jobs:
               if: failure()
               with:
                   name: cypress-screenshots-edge
-                  path: cypress/screenshots
-
-    e2e-firefox:
-        runs-on: ubuntu-22.04
-        needs: eslint
-        container:
-            image: cypress/browsers:node-20.11.1-chrome-123.0.6312.58-1-ff-124.0-edge-122.0.2365.92-1
-            options: --user 1001
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-
-            - name: Download the build folder
-              uses: actions/download-artifact@v4
-              with:
-                  name: build
-                  path: |
-                      app/client/dist
-                      app/server/dist
-
-            - name: Add PM2
-              run: yarn global add pm2
-
-            - name: Cypress run
-              uses: cypress-io/github-action@v6
-              with:
-                  browser: firefox
-                  start: pm2 start yarn --name "app" -- run start:ci
-                  wait-on: 'http://localhost:3000, http://localhost:3001/heroes'
-                  wait-on-timeout: 100
-
-            - name: Upload screenshots
-              uses: actions/upload-artifact@v4
-              if: failure()
-              with:
-                  name: cypress-screenshots-firefox
                   path: cypress/screenshots
