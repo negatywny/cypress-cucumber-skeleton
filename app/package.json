@@ -9,11 +9,13 @@
         "server"
     ],
     "scripts": {
-        "build": "npm --prefix ./client run build && npm --prefix ./server run build",
-        "setup": "npm run resetdb",
-        "resetdb": "npm --prefix ./server run prisma:resetdb",
-        "dev": "concurrently \"npm --prefix ./client run dev\" \"npm --prefix ./server run start:dev\"",
-        "start:ci": "concurrently \"npm --prefix ./client run preview\" \"npm --prefix ./server run start:ci\""
+        "build": "yarn --cwd ./client build && yarn --cwd ./server build",
+        "setup": "yarn resetdb",
+        "resetdb": "yarn --cwd ./server prisma:resetdb",
+        "dev": "concurrently \"yarn --cwd ./client dev\" \"yarn --cwd ./server start:dev\"",
+        "start:ci": "concurrently \"yarn --cwd ./client dev\" \"yarn --cwd ./server start:ci\"",
+        "lint": "concurrently \"yarn --cwd ./client lint\" \"yarn --cwd ./server lint\""
+
     },
     "repository": {
         "type": "git",

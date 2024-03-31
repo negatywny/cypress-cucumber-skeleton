@@ -7,11 +7,11 @@ tasks:
 
     setup:
         cmds:
-            - yarn run setup
+            - yarn setup
 
     dev:
         cmds:
-            - yarn run dev
+            - yarn dev
 
     up:
         cmds:
@@ -23,12 +23,12 @@ tasks:
 
     open:
         cmds:
-            - yarn run cypress open
+            - yarn cypress open
 
     test:
         cmds:
-            - yarn run cypress run
+            - yarn cypress run
 
     test:smoke:
         cmds:
-            - yarn run cypress run --env tags="@smoke"
+            - yarn cypress run --env tags="@smoke"

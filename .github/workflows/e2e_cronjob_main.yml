@@ -1,0 +1,72 @@
+name: Cypress Main CronJob
+
+on:
+    push:
+        branches:
+            - 'main'
+    schedule:
+        - cron: '0 8 1-31 * *'
+
+jobs:
+    install:
+        runs-on: ubuntu-22.04
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Cypress install
+              uses: cypress-io/github-action@v6
+              with:
+                  runTests: false
+                  build: yarn build
+
+            - name: Save build folder
+              uses: actions/upload-artifact@v4
+              with:
+                  name: build
+                  if-no-files-found: error
+                  path: |
+                      app/client/dist
+                      app/server/dist
+
+    e2e-chrome:
+        runs-on: ubuntu-22.04
+        needs: install
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Download the build folder
+              uses: actions/download-artifact@v4
+              with:
+                  name: build
+                  path: |
+                      app/client/dist
+                      app/server/dist
+
+            - name: Add PM2
+              run: yarn global add pm2
+
+            - name: E2E
+              uses: cypress-io/github-action@v6
+              with:
+                  browser: chrome
+                  start: pm2 start yarn --name "app" -- run start:ci
+                  wait-on: 'http://localhost:3000, http://localhost:3001/heroes'
+                  wait-on-timeout: 100
+
+            - name: Generate Reports
+              run: yarn reports
+
+            - name: Upload reports
+              uses: actions/upload-artifact@v4
+              with:
+                  name: cypress-reports
+                  path: cypress/reports/mochareports/report.html
+
+            - name: Upload screenshots
+              uses: actions/upload-artifact@v4
+              if: failure()
+              with:
+                  name: cypress-screenshots
+                  path: cypress/screenshots

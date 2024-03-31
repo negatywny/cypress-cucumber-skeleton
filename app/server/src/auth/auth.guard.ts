@@ -20,7 +20,7 @@ export class AuthGuard extends PassportAuthGuard('jwt') implements CanActivate {
 
     const requiredRoles = this.reflector.get<string[]>(
       'roles',
-      context.getHandler()
+      context.getHandler(),
     );
 
     let user: User;

@@ -9,7 +9,7 @@ export class PowersService {
 
   async get() {
     const powerDataModels = await this.prismaService.power.findMany();
-    const powers = powerDataModels.map(p => mapper(new PowerViewModel(), p));
-    return  powers;
+    const powers = powerDataModels.map((p) => mapper(new PowerViewModel(), p));
+    return powers;
   }
 }
