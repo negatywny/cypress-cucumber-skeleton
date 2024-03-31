@@ -30,10 +30,6 @@ jobs:
                       app/client/dist
                       app/server/dist
 
-            - name: Start Cypress Heroes in the background
-              run: pm2 start yarn --name "app" -- run start:ci
-
-
     e2e-chrome:
         runs-on: ubuntu-22.04
         needs: install
@@ -49,7 +45,8 @@ jobs:
                       app/client/dist
                       app/server/dist
 
-
+            - name: Start Cypress Heroes in the background
+              run: pm2 start yarn --name "app" -- run start:ci
 
             - name: Cypress run
               uses: cypress-io/github-action@v6
@@ -72,6 +69,9 @@ jobs:
                   path: |
                       app/client/dist
                       app/server/dist
+
+            - name: Start Cypress Heroes in the background
+              run: pm2 start yarn --name "app" -- run start:ci
 
             - name: Cypress run
               uses: cypress-io/github-action@v6
