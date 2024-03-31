@@ -14,7 +14,7 @@ jobs:
               with:
                   runTests: false
                   build: yarn build
-                  
+
             - name: Lint
               run: yarn lint
 
@@ -50,6 +50,8 @@ jobs:
               with:
                   start: pm2 start yarn --name "app" -- run start:ci
                   browser: chrome
+                  wait-on: 'http://localhost:3000'
+                  wait-on-timeout: 120
 
     e2e-firefox:
         runs-on: ubuntu-22.04
@@ -74,3 +76,5 @@ jobs:
               with:
                   start: pm2 start yarn --name "app" -- run start:ci
                   browser: firefox
+                  wait-on: 'http://localhost:3000'
+                  wait-on-timeout: 120
