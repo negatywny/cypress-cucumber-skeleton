@@ -6,8 +6,9 @@ app/*/prisma/data
 
 # Cypress
 cypress/screenshots
+cypress/downloads
 cypress/videos
-cypress/results
+cypress/reports
 cypress.env.json
 
 # Logs
