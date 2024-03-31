@@ -9,17 +9,11 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
 
-            - name: Add PM2
-              run: yarn global add pm2
-
             - name: Cypress install
               uses: cypress-io/github-action@v6
               with:
                   runTests: false
                   build: yarn build
-
-            - name: Lint
-              run: yarn lint
 
             - name: Save build folder
               uses: actions/upload-artifact@v4
@@ -30,7 +24,7 @@ jobs:
                       app/client/dist
                       app/server/dist
 
-    e2e-chrome:
+    lint:
         runs-on: ubuntu-22.04
         needs: install
         steps:
@@ -44,6 +38,30 @@ jobs:
                   path: |
                       app/client/dist
                       app/server/dist
+
+            - name: Lint using Eslint
+              uses: cypress-io/github-action@v6
+              with:
+                  runTests: false
+                  build: yarn lint
+
+    e2e-chrome:
+        runs-on: ubuntu-22.04
+        needs: lint
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Download the build folder
+              uses: actions/download-artifact@v4
+              with:
+                  name: build
+                  path: |
+                      app/client/dist
+                      app/server/dist
+
+            - name: Add PM2
+              run: yarn global add pm2
 
             - name: Start Cypress Heroes in the background
               run: pm2 start yarn --name "app" -- run start:ci
@@ -57,7 +75,7 @@ jobs:
 
     e2e-edge:
         runs-on: ubuntu-22.04
-        needs: install
+        needs: lint
         steps:
             - name: Checkout
               uses: actions/checkout@v4
@@ -69,6 +87,9 @@ jobs:
                   path: |
                       app/client/dist
                       app/server/dist
+
+            - name: Add PM2
+              run: yarn global add pm2
 
             - name: Start Cypress Heroes in the background
               run: pm2 start yarn --name "app" -- run start:ci
