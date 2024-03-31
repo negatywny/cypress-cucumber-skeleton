@@ -104,34 +104,34 @@ jobs:
                   path: cypress/screenshots
 
     e2e-firefox:
-      runs-on: ubuntu-22.04
-      needs: eslint
-      steps:
-          - name: Checkout
-            uses: actions/checkout@v4
+        runs-on: ubuntu-22.04
+        needs: eslint
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
 
-          - name: Download the build folder
-            uses: actions/download-artifact@v4
-            with:
-                name: build
-                path: |
-                    app/client/dist
-                    app/server/dist
+            - name: Download the build folder
+              uses: actions/download-artifact@v4
+              with:
+                  name: build
+                  path: |
+                      app/client/dist
+                      app/server/dist
 
-          - name: Add PM2
-            run: yarn global add pm2
+            - name: Add PM2
+              run: yarn global add pm2
 
-          - name: Cypress run
-            uses: cypress-io/github-action@v6
-            with:
-                browser: firefox
-                start: pm2 start yarn --name "app" -- run start:ci
-                wait-on: 'http://localhost:3000, http://localhost:3001/heroes'
-                wait-on-timeout: 100
+            - name: Cypress run
+              uses: cypress-io/github-action@v6
+              with:
+                  browser: firefox
+                  start: pm2 start yarn --name "app" -- run start:ci
+                  wait-on: 'http://localhost:3000, http://localhost:3001/heroes'
+                  wait-on-timeout: 100
 
-          - name: Upload screenshots
-            uses: actions/download-artifact@v4
-            if: failure()
-            with:
-                name: cypress-screenshots-firefox
-                path: cypress/screenshots
+            - name: Upload screenshots
+              uses: actions/download-artifact@v4
+              if: failure()
+              with:
+                  name: cypress-screenshots-firefox
+                  path: cypress/screenshots
