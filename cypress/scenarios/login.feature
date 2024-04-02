@@ -1,13 +1,16 @@
-Feature: Login Feature
+Feature: Login scenarios
 
+  @smoke
   Scenario: Successful User Login
     When I log in as normal user
     Then I should be logged as normal user
 
+  @smoke
   Scenario: Successful Admin Login
     When I log in as admin
     Then I should be logged as admin
-
+  
+  @smoke
   Scenario: Incorrect Credentials
     Given Email is: 'admin@test.com'
     Given Password is: 'incorrect_password'
