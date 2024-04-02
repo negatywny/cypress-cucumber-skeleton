@@ -1,5 +1,6 @@
-Feature: Like a hero
+Feature: Like a hero scenarios
 
+  @smoke
   Scenario: Not logged user tries to like a hero
     Given Im on the hero page
     When I see a first hero
@@ -8,7 +9,8 @@ Feature: Like a hero
     Then Alert modal with infomation about log in to like is visible
     Then I am able to close login information modal
     Then Hero fans counter should not increase
-
+  
+  @smoke
   Scenario: Normal user likes a hero
     Given Im on the hero page
     When I log in as normal user
@@ -17,6 +19,7 @@ Feature: Like a hero
     And I click on a hero like button
     Then Hero fans counter should increase
 
+  @smoke
   Scenario: Admin likes a hero
     Given Im on the hero page
     When I log in as admin

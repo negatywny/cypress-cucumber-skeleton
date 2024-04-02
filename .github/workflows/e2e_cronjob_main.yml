@@ -1,4 +1,4 @@
-name: Cypress Main CronJob
+name: Daily E2E Regression
 
 on:
     push:
@@ -61,12 +61,12 @@ jobs:
             - name: Upload reports
               uses: actions/upload-artifact@v4
               with:
-                  name: cypress-reports
+                  name: cypress-reports-chrome
                   path: cypress/reports/mochareports/report.html
 
             - name: Upload screenshots
               uses: actions/upload-artifact@v4
               if: failure()
               with:
-                  name: cypress-screenshots
+                  name: cypress-screenshots-chrome
                   path: cypress/screenshots

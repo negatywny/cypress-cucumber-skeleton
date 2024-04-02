@@ -1,10 +1,13 @@
 FROM node:lts
 
-RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
-WORKDIR /home/node/app
+RUN mkdir -p /home/node/dev/node_modules && chown -R node:node /home/node/dev
+WORKDIR /home/node/dev
 
-COPY app .
+COPY package.json . 
+COPY yarn.lock .
+COPY app app
+
 RUN yarn install
-RUN yarn run setup
+RUN yarn setup
 
 ENTRYPOINT ["yarn", "run"]

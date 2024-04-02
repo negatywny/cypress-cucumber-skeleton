@@ -4,9 +4,6 @@ tasks:
     install:
         cmds:
             - yarn install
-
-    setup:
-        cmds:
             - yarn setup
 
     dev:
@@ -27,8 +24,12 @@ tasks:
 
     test:
         cmds:
-            - yarn cypress run
+            - yarn cypress run --browser=chrome
 
     test:smoke:
         cmds:
-            - yarn cypress run --env tags="@smoke"
+            - yarn cypress run --env tags="@smoke" --browser=chrome
+
+    reports:
+        cmds:
+            - yarn reports

@@ -1,5 +1,6 @@
-Feature: Hire a hero
+Feature: Hire a hero scenarios
 
+@smoke
 Scenario: Not logged user tries to hire a hero 
 Given Im on the hero page
 When I see a first hero
@@ -23,6 +24,7 @@ Then Hero hiring modal avatar should be correct
 Then Hero hiring modal name should be correct
 Then Hero hiring modal buttons should be visible
 
+@smoke
 Scenario: Normal user hires a hero 
 Given Im on the hero page
 When I log in as normal user
@@ -33,6 +35,7 @@ And I confirm hiring a hero using a modal
 Then Hero hiring modal should disappear 
 Then Hero saves counter should increase
 
+@smoke
 Scenario: Admin user hires a hero 
 Given Im on the hero page
 When I log in as admin
