@@ -182,7 +182,7 @@ Your newly generated HTML report will be stored in: [Cypress Reports](cypress/re
 GitHub Actions checks are created and running for particular cases:
 
 - When you create a PR. Screenshots with errors are added to job artifacts if any test will fail. Here are workflow results: [E2E Tests for PRs](https://github.com/negatywny/cypress-cucumber-skeleton/actions/workflows/pr-e2e-actions.yml)
-- Daily E2E Regression (at 8:00 AM) for main branch.Daily report is added to job artifacts. Here are workflow results: [Daily E2E Regression](https://github.com/negatywny/cypress-cucumber-skeleton/actions/workflows/e2e_cronjob_main.yml)
+- Daily E2E Regression (at 8:00 AM) for main branch. Daily report is added to job artifacts. Here are workflow results: [Daily E2E Regression](https://github.com/negatywny/cypress-cucumber-skeleton/actions/workflows/e2e_cronjob_main.yml)
 
 ## Contact
 
