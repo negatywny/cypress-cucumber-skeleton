@@ -17,8 +17,8 @@ jobs:
             - name: App install
               run: npm --prefix ./app install
 
-            - name: App build  
-              run: npm build
+            - name: App build
+              run: npx build
 
             - name: Save build folder
               uses: actions/upload-artifact@v4
@@ -40,7 +40,7 @@ jobs:
               uses: cypress-io/github-action@v6
               with:
                   runTests: false
-            - run: npm lint
+            - run: npx lint
 
     e2e-chrome:
         runs-on: ubuntu-22.04
@@ -58,7 +58,7 @@ jobs:
                       app/server/dist
 
             - name: Add PM2
-              run: npm global install pm2
+              run: npm install pm2 -g
 
             - name: E2E
               uses: cypress-io/github-action@v6
@@ -91,7 +91,7 @@ jobs:
                       app/server/dist
 
             - name: Add PM2
-              run: npm global add pm2
+              run: npm install pm2 -g
 
             - name: E2E
               uses: cypress-io/github-action@v6
