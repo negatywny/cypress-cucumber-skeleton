@@ -14,8 +14,9 @@ jobs:
             - name: App and Cypress install
               uses: cypress-io/github-action@v6
               with:
-                  runTests: false
-                  build: yarn --cwd ./app install && yarn build
+                runTests: false
+            - run: yarn --cwd ./app install
+            - run: yarn build
 
             - name: Save build folder
               uses: actions/upload-artifact@v4
