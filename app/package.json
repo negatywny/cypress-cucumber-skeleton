@@ -13,9 +13,8 @@
         "setup": "yarn resetdb",
         "resetdb": "yarn --cwd ./server prisma:resetdb",
         "dev": "concurrently \"yarn --cwd ./client dev\" \"yarn --cwd ./server start:dev\"",
-        "start:ci": "concurrently \"yarn --cwd ./client preview\" \"yarn --cwd ./server start:ci\"",
+        "start:ci": "concurrently \"yarn --cwd ./client dev\" \"yarn --cwd ./server start:ci\"",
         "lint": "concurrently \"yarn --cwd ./client lint\" \"yarn --cwd ./server lint\""
-
     },
     "repository": {
         "type": "git",

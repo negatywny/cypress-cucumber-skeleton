@@ -36,11 +36,13 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
 
-            - name: Run eslint
+            - name: Download dependecies
               uses: cypress-io/github-action@v6
               with:
                   runTests: false
-            - run: yarn lint
+
+            - name: Run eslint
+              run: yarn lint
 
     e2e-chrome:
         runs-on: ubuntu-22.04

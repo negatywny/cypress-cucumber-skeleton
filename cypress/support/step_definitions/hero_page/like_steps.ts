@@ -54,7 +54,7 @@ Then('Hero fans counter should not increase', function () {
 Then('Hero fans counter should increase', function () {
     cy.get('@hero').within(() => {
         cy.get('@fans_counter').then((counter) => {
-            cy.getByCy('fans').should('contain.text', Number(counter)+1)
+            cy.getByCy('fans').should('contain.text', Number(counter) + 1)
         })
     })
 })
