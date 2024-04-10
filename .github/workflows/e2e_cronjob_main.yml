@@ -1,9 +1,6 @@
 name: Daily E2E Regression
 
 on:
-    push:
-        branches:
-            - 'main'
     schedule:
         - cron: '0 8 1-31 * *'
 
@@ -18,7 +15,12 @@ jobs:
               uses: cypress-io/github-action@v6
               with:
                   runTests: false
-                  build: yarn build
+
+            - name: App install
+              run: yarn --cwd ./app install --frozen-lockfile
+
+            - name: App build
+              run: yarn build
 
             - name: Save build folder
               uses: actions/upload-artifact@v4
@@ -26,8 +28,8 @@ jobs:
                   name: build
                   if-no-files-found: error
                   path: |
-                      app/client/dist
-                      app/server/dist
+                      ${{ github.workspace }}/app/client/dist/
+                      ${{ github.workspace }}/app/server/dist/
 
     e2e-chrome:
         runs-on: ubuntu-22.04
@@ -41,19 +43,16 @@ jobs:
               with:
                   name: build
                   path: |
-                      app/client/dist
-                      app/server/dist
-
-            - name: Add PM2
-              run: yarn global add pm2
+                      ${{ github.workspace }}/app/
 
             - name: E2E
               uses: cypress-io/github-action@v6
               with:
-                  browser: chrome
-                  start: pm2 start yarn --name "app" -- run start:ci
-                  wait-on: 'http://localhost:3000, http://localhost:3001/heroes'
-                  wait-on-timeout: 100
+                  build: yarn --cwd ./app install --frozen-lockfile
+                  start: yarn start:ci
+                  wait-on: 'http://localhost:3001/heroes, http://localhost:3000'
+                  wait-on-timeout: 30
+                  command: yarn e2e:chrome
 
             - name: Generate Reports
               run: yarn reports
@@ -72,43 +71,40 @@ jobs:
                   path: cypress/screenshots
 
     e2e-edge:
-      runs-on: ubuntu-22.04
-      needs: install
-      steps:
-          - name: Checkout
-            uses: actions/checkout@v4
+        runs-on: ubuntu-22.04
+        needs: install
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
 
-          - name: Download the build folder
-            uses: actions/download-artifact@v4
-            with:
-                name: build
-                path: |
-                    app/client/dist
-                    app/server/dist
+            - name: Download the build folder
+              uses: actions/download-artifact@v4
+              with:
+                  name: build
+                  path: |
+                      ${{ github.workspace }}/app/
 
-          - name: Add PM2
-            run: yarn global add pm2
+            - name: E2E
+              uses: cypress-io/github-action@v6
+              with:
+                  build: yarn --cwd ./app install --frozen-lockfile
+                  start: yarn start:ci
+                  wait-on: 'http://localhost:3001/heroes, http://localhost:3000'
+                  wait-on-timeout: 30
+                  command: yarn e2e:edge
 
-          - name: E2E
-            uses: cypress-io/github-action@v6
-            with:
-                browser: edge
-                start: pm2 start yarn --name "app" -- run start:ci
-                wait-on: 'http://localhost:3000, http://localhost:3001/heroes'
-                wait-on-timeout: 100
+            - name: Generate Reports
+              run: yarn reports
 
-          - name: Generate Reports
-            run: yarn reports
+            - name: Upload reports
+              uses: actions/upload-artifact@v4
+              with:
+                  name: cypress-reports-edge
+                  path: cypress/reports/mochareports/report.html
 
-          - name: Upload reports
-            uses: actions/upload-artifact@v4
-            with:
-                name: cypress-reports-edge
-                path: cypress/reports/mochareports/report.html
-
-          - name: Upload screenshots
-            uses: actions/upload-artifact@v4
-            if: failure()
-            with:
-                name: cypress-screenshots-edge
-                path: cypress/screenshots
+            - name: Upload screenshots
+              uses: actions/upload-artifact@v4
+              if: failure()
+              with:
+                  name: cypress-screenshots-edge
+                  path: cypress/screenshots

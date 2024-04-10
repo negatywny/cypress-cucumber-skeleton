@@ -1,9 +1,8 @@
-node_modules
-dist
-dist-ssr
+**/node_modules
+**/dist
 .env.local
-app/*/prisma/data
-Dockerfile
+**/prisma/data
+docker/Dockerfile
 .dockerignore
 .gitignore
 docker-compose.yml

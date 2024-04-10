@@ -1,4 +1,3 @@
-<a name="readme-top"></a>
 <div align="center">
 <h1 align="center">Cypress Cucumber Skeleton</h3>
 <a href="https://github.com/negatywny/cypress-cucumber-skeleton"><strong>GitHub repository page »</strong></a>
@@ -39,59 +38,58 @@
   </ol>
 </details>
 
-
 ## About The Project
 
-***Hello there!***
+**_Hello there!_**
 
-I've created a simple draft project for my E2E Tests using Cypress with TypeScript and Cucumber. 
+I've created a simple draft project for my E2E Tests using Cypress with TypeScript and Cucumber.
 
 Main Goals of the project are:
-- Dockerize the Cypress Heroes App
-- Add data-cy selectors to Cypress Heroes
-- Create example cucumber scenarios
-- Add mochawesome reports
-- Add CI/CD
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+-   Dockerize the Cypress Heroes App
+-   Add data-cy selectors to Cypress Heroes
+-   Create example cucumber scenarios
+-   Add mochawesome reports
+-   Add CI/CD
 
 ## Getting Started
+
 ### Prerequisites
 
 Before you start, you will need to have `yarn`, `task` and `node` installed.
 
-You can get them using [homebrew](https://brew.sh/).
-- yarn
-  ```sh
-  brew install yarn
-  ```
-- task
-  ```sh
-  brew install task
-  ```
-- node
-  ```sh
-  brew install node
-  ```
+You can get them using [homebrew](https://brew.sh/):
+
+-   node
+    ```sh
+    brew install node
+    ```
+-   yarn
+    ```sh
+    brew install yarn
+    ```
+-   task
+    ```sh
+    brew install task
+    ```
 
 ---
+
 ### Installation
 
 1. Clone the repo
-   ```sh
-   git clone https://github.com/negatywny/cypress-cucumber-skeleton.git
-   ```
-2. Install dependencies and set up the app
-   ```sh
-   task install
-   ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+    ```sh
+    git clone https://github.com/negatywny/cypress-cucumber-skeleton.git
+    ```
+2. Install Cypress dependencies
+    ```sh
+    task cy:install
+    ```
 
 ## Cypress Heroes
+
 ### Get to Know the App
+
 The Cypress Heroes app is a take on the classic Angular Tour of Heroes tutorial application. The app displays a list of heroes for hire. You can view the hero's contract price, the number of fans (likes) the hero has, and the number of saves (completed jobs). Heroes can be created, edited, and deleted.
 
 The app features a few different pages and several components that provide a good starting point to learn testing with Cypress.
@@ -104,18 +102,19 @@ API calls to a real back-end
 Forms
 Attempting to click the like or hire icons will result in being prompted to log into the app. There are two baked-in logins, a normal user and an admin user with elevated permissions. Here are the credentials for the logins:
 
-***Normal User:***
- ```sh
-  username: test@test.com, 
-  password: test123
+**_Normal User:_**
+
+```sh
+ username: test@test.com,
+ password: test123
 ```
 
-***Admin:***
- ```sh
-  username: admin@test.com, 
-  password: test123
-```
+**_Admin:_**
 
+```sh
+ username: admin@test.com,
+ password: test123
+```
 
 Logging in as a normal user will allow you to like and hire the hero. Notice that when doing so, the number of fans and saves increases (respectively).
 
@@ -125,28 +124,34 @@ Cypress Heroes GitHub Repo:
 https://github.com/cypress-io/cypress-heroes
 
 ---
+
 ### Start the App
 
-You can start the app without docker:
- ```sh
- task dev
+You can install app dependecies:
+
+```sh
+task app:install
+```
+
+and start the app without docker:
+
+```sh
+task app:dev
 ```
 
 **OR**
 
 Use docker compose
- ```sh
- task up
+
+```sh
+task app:up
 ```
 
 After that, the app should be available at the URL:
 http://localhost:3000/heroes
 
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ## Cypress E2E Tests
+
 ### Test Scenarios and Steps
 
 All test scenarios are created using Cucumber and can be found in: [Test Scenarios](cypress/scenarios)
@@ -154,12 +159,15 @@ All test scenarios are created using Cucumber and can be found in: [Test Scenari
 All scenarios steps are implemented using Cypress with TypeScript and are stored in: [Steps](cypress/support/step_definitions)
 
 ### Run the Tests
+
 To run all Cypress tests in headless:
- ```sh
- task test
+
+```sh
+task test
 ```
 
 To run smoke tests in headless:
+
 ```sh
 task test:smoke
 ```
@@ -167,35 +175,31 @@ task test:smoke
 ### Open Cypress GUI
 
 To open Cypress GUI:
- ```sh
- task open
+
+```sh
+task cy:open
 ```
 
 ### Generate Reports After Tests
+
 After executing the tests, Cypress will save the results. To generate an HTML mochawesome report, simply use:
- ```sh
- task reports
+
+```sh
+task test:reports
 ```
+
 Your newly generated HTML report will be stored in: [Cypress Reports](cypress/reports/mochareports)
 
 ### CI CD
+
 GitHub Actions checks are created and running for particular cases:
 
-- When you create a PR. Screenshots with errors are added to job artifacts if any test will fail. Here are workflow results: [E2E Tests for PRs](https://github.com/negatywny/cypress-cucumber-skeleton/actions/workflows/pr-e2e-actions.yml)
-- Daily E2E Regression (at 8:00 AM) for main branch.Daily report is added to job artifacts. Here are workflow results: [Daily E2E Regression](https://github.com/negatywny/cypress-cucumber-skeleton/actions/workflows/e2e_cronjob_main.yml)
+-   When you create a PR. Screenshots with errors are added to job artifacts if any test will fail. Here are workflow results: [E2E Tests for PRs](https://github.com/negatywny/cypress-cucumber-skeleton/actions/workflows/pr-e2e-actions.yml)
+-   Daily E2E Regression (at 8:00 AM) for main branch.Daily report is added to job artifacts. Here are workflow results: [Daily E2E Regression](https://github.com/negatywny/cypress-cucumber-skeleton/actions/workflows/e2e_cronjob_main.yml)
 
 ## Contact
 
 ![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white) https://www.linkedin.com/in/plusina/
 
-![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white) 
-```pawellusina1915@gmail.com```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-
-
-
-
+![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)
+`pawellusina1915@gmail.com`
