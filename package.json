@@ -41,5 +41,8 @@
             "enabled": false
         },
         "stepDefinitions": "cypress/support/step_definitions/**/*.ts"
+    },
+    "dependencies": {
+        "concurrently": "^8.2.2"
     }
 }

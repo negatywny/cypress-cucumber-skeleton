@@ -18,6 +18,10 @@ tasks:
         cmds:
             - docker compose down
 
+    lint:
+        cmds:
+            - yarn lint
+
     cy:install:
         cmds:
             - yarn install
