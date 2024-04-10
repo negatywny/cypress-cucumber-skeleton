@@ -19,7 +19,7 @@ jobs:
             - name: App install
               run: yarn --cwd ./app install --frozen-lockfile
 
-            - name: App build  
+            - name: App build
               run: yarn build
 
             - name: Save build folder
@@ -53,6 +53,7 @@ jobs:
               uses: cypress-io/github-action@v6
               with:
                   browser: chrome
+                  build: yarn --cwd ./app install --frozen-lockfile
                   start: pm2 start yarn --name "app" -- run start:ci
                   wait-on: 'http://localhost:3000, http://localhost:3001/heroes'
                   wait-on-timeout: 100
@@ -95,6 +96,7 @@ jobs:
               uses: cypress-io/github-action@v6
               with:
                   browser: edge
+                  build: yarn --cwd ./app install --frozen-lockfile
                   start: pm2 start yarn --name "app" -- run start:ci
                   wait-on: 'http://localhost:3000, http://localhost:3001/heroes'
                   wait-on-timeout: 100
