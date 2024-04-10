@@ -64,6 +64,8 @@ jobs:
               with:
                   build: yarn --cwd ./app install --frozen-lockfile
                   start: yarn start:ci
+                  wait-on: 'http://localhost:3001/heroes'
+                  wait-on-timeout: 30
                   command: yarn e2e:chrome
 
             - name: Upload screenshots
@@ -93,6 +95,8 @@ jobs:
               with:
                   build: yarn --cwd ./app install --frozen-lockfile
                   start: yarn start:ci
+                  wait-on: 'http://localhost:3001/heroes'
+                  wait-on-timeout: 30
                   command: yarn e2e:edge
 
             - name: Upload screenshots
