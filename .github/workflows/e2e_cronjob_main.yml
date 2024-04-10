@@ -11,11 +11,11 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
 
-            - name: Cypress install
+            - name: App and Cypress install
               uses: cypress-io/github-action@v6
               with:
                   runTests: false
-                  build: yarn build
+                  build: yarn --cwd ./app install && yarn build
 
             - name: Save build folder
               uses: actions/upload-artifact@v4
