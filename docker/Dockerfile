@@ -1,11 +1,9 @@
 FROM node:lts
 
-RUN mkdir -p /home/node/dev/node_modules && chown -R node:node /home/node/dev
-WORKDIR /home/node/dev
+RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+WORKDIR /home/node/app
 
-COPY package.json . 
-COPY yarn.lock .
-COPY app app
+COPY app .
 
 RUN yarn install
 RUN yarn setup

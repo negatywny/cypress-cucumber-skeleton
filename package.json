@@ -6,11 +6,6 @@
     "repository": "https://github.com/negatywny/cypress-cucumber-skeleton.git",
     "author": "negatywny <oax2201@gmail.com>",
     "license": "MIT",
-    "workspaces": [
-        "app",
-        "app/server",
-        "app/client"
-    ],
     "scripts": {
         "build": "yarn --cwd ./app build",
         "setup": "yarn resetdb",

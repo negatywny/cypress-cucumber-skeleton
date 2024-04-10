@@ -1,24 +1,28 @@
 version: '3'
 
 tasks:
-    install:
+    app:install:
         cmds:
-            - yarn install
+            - yarn --cwd ./app install
             - yarn setup
 
-    dev:
+    app:dev:
         cmds:
             - yarn dev
 
-    up:
+    app:up:
         cmds:
             - docker compose up --build -d
 
-    down:
+    app:down:
         cmds:
             - docker compose down
 
-    open:
+    cy:install:
+        cmds:
+            - yarn install
+
+    cy:open:
         cmds:
             - yarn cypress open
 
@@ -30,6 +34,6 @@ tasks:
         cmds:
             - yarn cypress run --env tags="@smoke" --browser=chrome
 
-    reports:
+    test:reports:
         cmds:
             - yarn reports
