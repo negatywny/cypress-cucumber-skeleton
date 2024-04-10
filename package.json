@@ -24,6 +24,7 @@
         "@bahmutov/cypress-esbuild-preprocessor": "^2.1.5",
         "@typescript-eslint/eslint-plugin": "^7.1.1",
         "@typescript-eslint/parser": "^7.1.1",
+        "concurrently": "^8.2.2",
         "cypress": "^13.6.6",
         "cypress-multi-reporters": "^1.6.4",
         "eslint": "^8.32.0",
@@ -45,7 +46,5 @@
         },
         "stepDefinitions": "cypress/support/step_definitions/**/*.ts"
     },
-    "dependencies": {
-        "concurrently": "^8.2.2"
-    }
+    "dependencies": {}
 }
