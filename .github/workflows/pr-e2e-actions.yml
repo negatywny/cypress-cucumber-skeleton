@@ -88,7 +88,6 @@ jobs:
                   path: |
                       ${{ github.workspace }}/app/
 
-                      
             - name: E2E
               uses: cypress-io/github-action@v6
               with:
