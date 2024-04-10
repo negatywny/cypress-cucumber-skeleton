@@ -45,6 +45,5 @@
             "enabled": false
         },
         "stepDefinitions": "cypress/support/step_definitions/**/*.ts"
-    },
-    "dependencies": {}
+    }
 }
