@@ -61,7 +61,7 @@ jobs:
               with:
                   build: yarn --cwd ./app install --frozen-lockfile
                   start: yarn start:ci
-                  wait-on: 'http://localhost:3001/heroes'
+                  wait-on: 'http://localhost:3001/heroes, http://localhost:3000'
                   wait-on-timeout: 30
                   command: yarn e2e:chrome
 
@@ -89,7 +89,7 @@ jobs:
               with:
                   build: yarn --cwd ./app install --frozen-lockfile
                   start: yarn start:ci
-                  wait-on: 'http://localhost:3001/heroes'
+                  wait-on: 'http://localhost:3001/heroes, http://localhost:3000'
                   wait-on-timeout: 30
                   command: yarn e2e:edge
 
