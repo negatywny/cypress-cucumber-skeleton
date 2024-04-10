@@ -26,8 +26,8 @@ jobs:
                   name: build
                   if-no-files-found: error
                   path: |
-                      app/client/dist
-                      app/server/dist
+                      ./app/client/dist
+                      ./app/server/dist
 
     eslint:
         runs-on: ubuntu-22.04
