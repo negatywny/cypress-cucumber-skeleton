@@ -32,6 +32,14 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
 
+            - name: Download the build folder
+              uses: actions/download-artifact@v4
+              with:
+                  name: build
+                  path: |
+                      app/client/dist
+                      app/server/dist
+
             - name: Run eslint
               uses: cypress-io/github-action@v6
               with:
