@@ -15,10 +15,10 @@ jobs:
                   runTests: false
 
             - name: App install
-              run: yarn --cwd ./app install --frozen-lockfile
+              run: npm --prefix ./app install
 
             - name: App build  
-              run: yarn build
+              run: npm build
 
             - name: Save build folder
               uses: actions/upload-artifact@v4
@@ -40,7 +40,7 @@ jobs:
               uses: cypress-io/github-action@v6
               with:
                   runTests: false
-            - run: yarn lint
+            - run: npm lint
 
     e2e-chrome:
         runs-on: ubuntu-22.04
@@ -58,13 +58,13 @@ jobs:
                       app/server/dist
 
             - name: Add PM2
-              run: yarn global add pm2
+              run: npm global install pm2
 
             - name: E2E
               uses: cypress-io/github-action@v6
               with:
                   browser: chrome
-                  start: pm2 start yarn --name "app" -- run start:ci
+                  start: pm2 start npm --name "app" -- run start:ci
                   wait-on: 'http://localhost:3000, http://localhost:3001/heroes'
                   wait-on-timeout: 100
 
@@ -91,13 +91,13 @@ jobs:
                       app/server/dist
 
             - name: Add PM2
-              run: yarn global add pm2
+              run: npm global add pm2
 
             - name: E2E
               uses: cypress-io/github-action@v6
               with:
                   browser: edge
-                  start: pm2 start yarn --name "app" -- run start:ci
+                  start: pm2 start npm --name "app" -- run start:ci
                   wait-on: 'http://localhost:3000, http://localhost:3001/heroes'
                   wait-on-timeout: 100
 
