@@ -46,17 +46,14 @@ jobs:
                       app/client/dist
                       app/server/dist
 
-            - name: Add PM2
-              run: yarn global add pm2
-
             - name: E2E
               uses: cypress-io/github-action@v6
               with:
-                  browser: chrome
                   build: yarn --cwd ./app install --frozen-lockfile
-                  start: pm2 start yarn --name "app" -- run start:ci
+                  start: yarn start:ci
                   wait-on: 'http://localhost:3000, http://localhost:3001/heroes'
                   wait-on-timeout: 100
+                  command: yarn e2e:chrome
 
             - name: Generate Reports
               run: yarn reports
@@ -89,17 +86,14 @@ jobs:
                       app/client/dist
                       app/server/dist
 
-            - name: Add PM2
-              run: yarn global add pm2
-
             - name: E2E
               uses: cypress-io/github-action@v6
               with:
-                  browser: edge
                   build: yarn --cwd ./app install --frozen-lockfile
-                  start: pm2 start yarn --name "app" -- run start:ci
+                  start: yarn start:ci
                   wait-on: 'http://localhost:3000, http://localhost:3001/heroes'
                   wait-on-timeout: 100
+                  command: yarn e2e:edge
 
             - name: Generate Reports
               run: yarn reports
