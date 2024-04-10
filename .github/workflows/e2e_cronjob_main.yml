@@ -11,12 +11,16 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
 
-            - name: App and Cypress install
+            - name: Cypress install
               uses: cypress-io/github-action@v6
               with:
                   runTests: false
-            - run: yarn --cwd ./app install
-            - run: yarn build
+
+            - name: App install
+              run: yarn --cwd ./app install --frozen-lockfile
+
+            - name: App build  
+              run: yarn build
 
             - name: Save build folder
               uses: actions/upload-artifact@v4
