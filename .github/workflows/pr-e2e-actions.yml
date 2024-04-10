@@ -18,7 +18,7 @@ jobs:
               run: npm --prefix ./app install
 
             - name: App build
-              run: npx build
+              run: npm run build
 
             - name: Save build folder
               uses: actions/upload-artifact@v4
@@ -40,7 +40,7 @@ jobs:
               uses: cypress-io/github-action@v6
               with:
                   runTests: false
-            - run: npx lint
+            - run: npm run lint
 
     e2e-chrome:
         runs-on: ubuntu-22.04
